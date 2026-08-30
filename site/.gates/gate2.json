@@ -1,0 +1,413 @@
+{
+  "gate": "Gate 2 · Structural and Authorship Conformance",
+  "sourceSeal": "17078406856b9b57beabe55f47fa643d2f41662afaac1d42ec946a539d1c20f9",
+  "detector": {
+    "desktop": {
+      "sections": [
+        {
+          "section": "section#top.cover",
+          "groups": [
+            {
+              "units": 2,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.187,
+                0.187
+              ],
+              "slots": {
+                "cta": "mid",
+                "meta": "mid"
+              },
+              "align": "start",
+              "container": "none",
+              "interaction": "link",
+              "sample": "li.index__row",
+              "formula": "2×equal|m:mid|c:mid|align:start|cont:none|int:link",
+              "shape": "2×equal|m:mid|c:mid"
+            }
+          ]
+        },
+        {
+          "section": "section.manifesto",
+          "groups": []
+        },
+        {
+          "section": "section.heritage",
+          "groups": []
+        },
+        {
+          "section": "section#plate-01.entry",
+          "groups": [
+            {
+              "units": 3,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.1,
+                0.1,
+                0.1
+              ],
+              "slots": {},
+              "align": "start",
+              "container": "rule-top",
+              "interaction": "static",
+              "sample": "dt",
+              "formula": "3×equal||align:start|cont:rule-top|int:static",
+              "shape": "3×equal|"
+            },
+            {
+              "units": 2,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.289,
+                0.289
+              ],
+              "slots": {},
+              "align": "start",
+              "container": "none",
+              "interaction": "static",
+              "sample": "p.entry__copy",
+              "formula": "2×equal||align:start|cont:none|int:static",
+              "shape": "2×equal|"
+            }
+          ]
+        },
+        {
+          "section": "section#plate-02.entry",
+          "groups": [
+            {
+              "units": 2,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.1,
+                0.1
+              ],
+              "slots": {},
+              "align": "start",
+              "container": "rule-top",
+              "interaction": "static",
+              "sample": "dt",
+              "formula": "2×equal||align:start|cont:rule-top|int:static",
+              "shape": "2×equal|"
+            }
+          ]
+        },
+        {
+          "section": "section#enquire.enquire",
+          "groups": [
+            {
+              "units": 3,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.219,
+                0.219,
+                0.219
+              ],
+              "slots": {
+                "meta": "top"
+              },
+              "align": "start",
+              "container": "none",
+              "interaction": "static",
+              "sample": "div.form__row",
+              "formula": "3×equal|m:top|align:start|cont:none|int:static",
+              "shape": "3×equal|m:top"
+            },
+            {
+              "units": 3,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.219,
+                0.219,
+                0.219
+              ],
+              "slots": {},
+              "align": "start",
+              "container": "none",
+              "interaction": "static",
+              "sample": "input#f-name.form__field",
+              "formula": "3×equal||align:start|cont:none|int:static",
+              "shape": "3×equal|"
+            }
+          ]
+        },
+        {
+          "section": "footer.colophon",
+          "groups": []
+        },
+        {
+          "section": "div.colophon__inner",
+          "groups": []
+        }
+      ],
+      "bandRun": 3,
+      "viewport": {
+        "w": 1440,
+        "h": 900
+      }
+    },
+    "mobile": {
+      "sections": [
+        {
+          "section": "section#top.cover",
+          "groups": [
+            {
+              "units": 2,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.665,
+                0.665
+              ],
+              "slots": {
+                "cta": "mid",
+                "meta": "mid"
+              },
+              "align": "start",
+              "container": "none",
+              "interaction": "link",
+              "sample": "li.index__row",
+              "formula": "2×equal|m:mid|c:mid|align:start|cont:none|int:link",
+              "shape": "2×equal|m:mid|c:mid"
+            }
+          ]
+        },
+        {
+          "section": "section.manifesto",
+          "groups": []
+        },
+        {
+          "section": "section.heritage",
+          "groups": []
+        },
+        {
+          "section": "section#plate-01.entry",
+          "groups": [
+            {
+              "units": 3,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.369,
+                0.369,
+                0.369
+              ],
+              "slots": {},
+              "align": "start",
+              "container": "rule-top",
+              "interaction": "static",
+              "sample": "dt",
+              "formula": "3×equal||align:start|cont:rule-top|int:static",
+              "shape": "3×equal|"
+            }
+          ]
+        },
+        {
+          "section": "section#plate-02.entry",
+          "groups": [
+            {
+              "units": 2,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.369,
+                0.369
+              ],
+              "slots": {},
+              "align": "start",
+              "container": "rule-top",
+              "interaction": "static",
+              "sample": "dt",
+              "formula": "2×equal||align:start|cont:rule-top|int:static",
+              "shape": "2×equal|"
+            }
+          ]
+        },
+        {
+          "section": "section#enquire.enquire",
+          "groups": [
+            {
+              "units": 4,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.877,
+                0.877,
+                0.877,
+                0.877
+              ],
+              "slots": {},
+              "align": "start",
+              "container": "none",
+              "interaction": "static",
+              "sample": "h2#enquire-h.enquire__h",
+              "formula": "4×equal||align:start|cont:none|int:static",
+              "shape": "4×equal|"
+            },
+            {
+              "units": 3,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.877,
+                0.877,
+                0.877
+              ],
+              "slots": {
+                "meta": "top"
+              },
+              "align": "start",
+              "container": "none",
+              "interaction": "static",
+              "sample": "div.form__row",
+              "formula": "3×equal|m:top|align:start|cont:none|int:static",
+              "shape": "3×equal|m:top"
+            },
+            {
+              "units": 2,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.877,
+                0.877
+              ],
+              "slots": {},
+              "align": "start",
+              "container": "none",
+              "interaction": "static",
+              "sample": "textarea#f-message.form__field",
+              "formula": "2×equal||align:start|cont:none|int:static",
+              "shape": "2×equal|"
+            }
+          ]
+        },
+        {
+          "section": "footer.colophon",
+          "groups": [
+            {
+              "units": 2,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.877,
+                0.877
+              ],
+              "slots": {
+                "image": "upper",
+                "meta": "bottom"
+              },
+              "align": "start",
+              "container": "none",
+              "interaction": "static",
+              "sample": "a.lockup",
+              "formula": "2×equal|i:upper|m:bottom|align:start|cont:none|int:static",
+              "shape": "2×equal|i:upper|m:bottom"
+            }
+          ]
+        },
+        {
+          "section": "div.colophon__inner",
+          "groups": [
+            {
+              "units": 2,
+              "widthClass": "equal",
+              "widthRatios": [
+                0.877,
+                0.877
+              ],
+              "slots": {
+                "image": "upper",
+                "meta": "bottom"
+              },
+              "align": "start",
+              "container": "none",
+              "interaction": "static",
+              "sample": "a.lockup",
+              "formula": "2×equal|i:upper|m:bottom|align:start|cont:none|int:static",
+              "shape": "2×equal|i:upper|m:bottom"
+            }
+          ]
+        }
+      ],
+      "bandRun": 3,
+      "viewport": {
+        "w": 390,
+        "h": 844
+      }
+    }
+  },
+  "findings": [
+    {
+      "kind": "parallel-units",
+      "section": "section#enquire.enquire",
+      "units": 3,
+      "shape": "3×equal|m:top",
+      "formula": "3×equal|m:top|align:start|cont:none|int:static",
+      "disposition": "earned",
+      "reason": "A form is a list of fields. Three equal-width inputs with their labels above is what makes them read and fill as one input group; making them unequal would assert a rank the fields do not have. It is not a card grid — no container, no border, no repeated image / heading / action unit — and it is the only repetition of its kind on the page."
+    }
+  ],
+  "humanInventory": {
+    "writtenFrom": ".gates/evidence/full-desktop.png, at 1440×900, before reading detector output",
+    "sections": [
+      {
+        "section": "cover",
+        "masses": 2,
+        "formula": "two unequal columns 58/42 · left: one exterior plate, bottom-anchored, bleeding past the left edge, dissolved to an ellipse · right: identity block top-aligned, index + single action bottom-aligned, a deep interval between them",
+        "repeatedUnits": "2 index rows, equal width, hairline between",
+        "image": "1 exterior, dissolved",
+        "action": "1 filled button + 2 links"
+      },
+      {
+        "section": "manifesto",
+        "masses": 1,
+        "formula": "a single paragraph at 40ch held at 52% from the left, full-width hairline above, deep field below",
+        "repeatedUnits": "none",
+        "image": "none",
+        "action": "none"
+      },
+      {
+        "section": "heritage",
+        "masses": 2,
+        "formula": "equal columns, unequal weight: headline top-left at display rank, body bottom-right at reading rank, aligned to the column's foot",
+        "repeatedUnits": "none",
+        "image": "none",
+        "action": "none"
+      },
+      {
+        "section": "entry 01",
+        "masses": 3,
+        "formula": "2×2 grid with the lower-left quarter deliberately empty · exterior left, bleeding, vertically centred · record right, vertically centred · interior right, row 2, at 1:2.0 of the exterior",
+        "repeatedUnits": "3 spec rows (key/value on a hairline)",
+        "image": "1 exterior dissolved + 1 interior framed",
+        "action": "none"
+      },
+      {
+        "section": "entry 02",
+        "masses": 3,
+        "formula": "the mirror: record left row 1, exterior right row 1 top-aligned and bleeding right at a smaller scale than entry 01's, interior row 2 spanning from the left bleed to 50% · the lower-RIGHT quarter is the empty one",
+        "repeatedUnits": "2 spec rows — the deck names no livery for this composition, so the record carries two and not three",
+        "image": "1 exterior dissolved + 1 interior framed",
+        "action": "none"
+      },
+      {
+        "section": "enquiry",
+        "masses": 2,
+        "formula": "46/54 · head block left (label, headline, note, secondary route) · working surface right",
+        "repeatedUnits": "3 equal text fields with labels above, 1 full-width textarea, 1 filled button",
+        "image": "none",
+        "action": "1 filled button + 1 secondary link"
+      },
+      {
+        "section": "colophon",
+        "masses": 2,
+        "formula": "lockup left, note right, on a deeper ground, top hairline",
+        "repeatedUnits": "none",
+        "image": "none",
+        "action": "1 link"
+      }
+    ],
+    "reconciliation": [
+      "Detector found and the inventory also has: the 2 cover index rows; the 3 spec rows in entry 01; the 2 spec rows in entry 02; the 3 form fields in the enquiry. Nothing the detector found is absent from the inventory.",
+      "Inventory found and the detector cannot see: the two entry sections are built from the SAME two ingredients — a dissolved exterior, a framed interior and a hairline record. Their difference is order (image-first vs record-first), axis (left vs mirrored) and scale (1:2.0 vs 1:0.9), not vocabulary. That is deliberate: they are two chapters of one book, and the detector cannot judge it because it is compositional rather than geometric.",
+      "No two sections share a compositional formula. Cover, entry 01, entry 02 and enquiry each resolve differently; manifesto and heritage are single- and paired-mass typographic chapters with no repetition at all.",
+      "An empty detector report would not have been evidence of originality. This one is not empty, and its single finding is disposed of below."
+    ]
+  },
+  "humanConfirmed": true,
+  "verdict": "pass",
+  "finishedAt": "2026-08-28T23:47:39.989Z",
+  "blockers": []
+}

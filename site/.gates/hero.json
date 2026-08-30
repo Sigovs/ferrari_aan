@@ -1,0 +1,157 @@
+{
+  "gate": "Gate 1/2 · delegated — rendered hero conformance",
+  "sourceSeal": "17078406856b9b57beabe55f47fa643d2f41662afaac1d42ec946a539d1c20f9",
+  "viewports": [
+    {
+      "label": "desktop",
+      "verdict": "pass",
+      "problems": [],
+      "geometry": {
+        "hero": {
+          "x": 0,
+          "y": 0,
+          "w": 1440,
+          "h": 900
+        },
+        "media": {
+          "x": -86.40625,
+          "y": 335.828125,
+          "w": 833.046875,
+          "h": 468.171875
+        },
+        "fit": "fill",
+        "position": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "natural": {
+          "w": 2000,
+          "h": 1125
+        }
+      },
+      "samples": [
+        {
+          "t": 0,
+          "rect": {
+            "x": 48.54734375000001,
+            "y": 442.5713125,
+            "w": 498.99507812499996,
+            "h": 284.180328125
+          },
+          "clipped": [],
+          "clearance": {
+            "left": 48.54734375000001,
+            "top": 442.5713125,
+            "right": 892.457578125,
+            "bottom": 173.24835937500006
+          },
+          "subjectShare": 0.109,
+          "navOverlap": 0,
+          "textSafeOverlap": 0,
+          "copyOverlap": 0
+        }
+      ],
+      "worst": {
+        "t": 0,
+        "rect": {
+          "x": 48.54734375000001,
+          "y": 442.5713125,
+          "w": 498.99507812499996,
+          "h": 284.180328125
+        },
+        "clipped": [],
+        "clearance": {
+          "left": 48.54734375000001,
+          "top": 442.5713125,
+          "right": 892.457578125,
+          "bottom": 173.24835937500006
+        },
+        "subjectShare": 0.109,
+        "navOverlap": 0,
+        "textSafeOverlap": 0,
+        "copyOverlap": 0
+      },
+      "sharpness": null,
+      "evidence": "/Users/alex/Desktop/WORK/CAULEY FERRARI/____AUGUST NEW PAGE POURSANG/site/.gates/evidence/hero-desktop.png"
+    },
+    {
+      "label": "mobile",
+      "verdict": "pass",
+      "problems": [],
+      "geometry": {
+        "hero": {
+          "x": 0,
+          "y": 0,
+          "w": 390,
+          "h": 844
+        },
+        "media": {
+          "x": -42.578125,
+          "y": 249.28125,
+          "w": 514.796875,
+          "h": 289.3125
+        },
+        "fit": "fill",
+        "position": {
+          "x": 0.5,
+          "y": 0.5
+        },
+        "natural": {
+          "w": 2000,
+          "h": 1125
+        }
+      },
+      "samples": [
+        {
+          "t": 0,
+          "rect": {
+            "x": 40.818968749999996,
+            "y": 315.2445,
+            "w": 308.363328125,
+            "h": 175.6126875
+          },
+          "clipped": [],
+          "clearance": {
+            "left": 40.818968749999996,
+            "top": 315.2445,
+            "right": 40.81770312499998,
+            "bottom": 353.1428125
+          },
+          "subjectShare": 0.165,
+          "navOverlap": 0,
+          "textSafeOverlap": 0,
+          "copyOverlap": 0
+        }
+      ],
+      "worst": {
+        "t": 0,
+        "rect": {
+          "x": 40.818968749999996,
+          "y": 315.2445,
+          "w": 308.363328125,
+          "h": 175.6126875
+        },
+        "clipped": [],
+        "clearance": {
+          "left": 40.818968749999996,
+          "top": 315.2445,
+          "right": 40.81770312499998,
+          "bottom": 353.1428125
+        },
+        "subjectShare": 0.165,
+        "navOverlap": 0,
+        "textSafeOverlap": 0,
+        "copyOverlap": 0
+      },
+      "sharpness": null,
+      "evidence": "/Users/alex/Desktop/WORK/CAULEY FERRARI/____AUGUST NEW PAGE POURSANG/site/.gates/evidence/hero-mobile.png"
+    }
+  ],
+  "humanConfirmed": false,
+  "verdict": "fail",
+  "finishedAt": "2026-08-28T23:47:43.891Z",
+  "sourceEvidence": "/Users/alex/Desktop/WORK/CAULEY FERRARI/____AUGUST NEW PAGE POURSANG/site/.gates/evidence/hero-source-declared.png",
+  "blockers": [
+    "humanConfirmed is false — the annotated source frame must be checked by a person: a wrongly declared subjectBox cannot produce a pass"
+  ]
+}

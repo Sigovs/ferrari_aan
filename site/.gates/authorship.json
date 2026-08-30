@@ -1,0 +1,101 @@
+{
+  "gate": "Gate 2 · delegated — authorship preservation",
+  "sourceSeal": "17078406856b9b57beabe55f47fa643d2f41662afaac1d42ec946a539d1c20f9",
+  "governingIdea": "The collection is a plate book. Each Atelier composition is a catalogue plate — the supplied studio render with its rectangle dissolved so the car stands in a pool of light on the page's own ground — and the colour facts are its record, set as a hairline plate rather than as marketing copy. The page is read as a set of two entries, not as two campaign frames.",
+  "operations": [
+    {
+      "id": "plate-mask",
+      "reference": "C22 / C9",
+      "governs": "the presentation of every exterior: an elliptical mask derived from the car's measured bounding box (x 0.162-0.761, y 0.228-0.835 of the 16:9 frame) reaches zero at the frame's four edges and stays opaque past every extreme point of the silhouette, so the studio rectangle dissolves and the car stands on the page uncropped",
+      "implementedBy": "css/page.css .plate__img { mask-image: radial-gradient(46% 50% at 46% 50% …) }",
+      "visibleAt": "every exterior: cover, entry 01, entry 02",
+      "workItDoes": "the studio rectangle disappears; the car stands in a pool of light on the page's own ground instead of inside a box. Verified on the render: hero.json reports the declared subject box clipped on no side at 1440 or 390, and the annotated frame shows the box containing the vehicle.",
+      "survivesRemoval": false,
+      "locatedInRender": true
+    },
+    {
+      "id": "pool-of-light",
+      "reference": "U17",
+      "governs": "the plate carries its own field, so no layer edge is ever hidden only by the ground beneath it",
+      "implementedBy": "css/page.css .plate--cover::before / .plate--wide::before / .plate--quiet::before, plus .cover__ground",
+      "visibleAt": "cover and both entries",
+      "workItDoes": "the light travels with the plate, so nothing painted over the image can leave an edge on the section's ground. Measured: the cover's bottom edge samples exactly #0d0e11 across the section boundary — no seam.",
+      "survivesRemoval": false,
+      "locatedInRender": true
+    },
+    {
+      "id": "interior-frame-committed",
+      "reference": "C9 / U11",
+      "governs": "interiors keep a rectangular frame while exteriors dissolve — two image treatments, one stated rule: an exterior is an object on a floor, an interior is a view",
+      "implementedBy": "css/page.css .plate__img--flat { mask-image: none }",
+      "visibleAt": "entry 01 and entry 02 interiors",
+      "workItDoes": "the two interiors keep a committed rectangular frame while the three exteriors dissolve — the page reads an exterior as an object on a floor and an interior as a view.",
+      "survivesRemoval": false,
+      "locatedInRender": true
+    },
+    {
+      "id": "axis-alternation",
+      "reference": "C6 / C7",
+      "governs": "the page alternates axis rather than centring — manifesto right, heritage headline left, entry 01 image-left, entry 02 record-left",
+      "implementedBy": "css/page.css .manifesto__lead { margin-inline-start: 52% }, .heritage grid, .entry--01 / .entry--02 grids",
+      "visibleAt": "manifesto, heritage, both entries",
+      "workItDoes": "the reading axis moves right, left, left, right down the page, so the chapters are told apart before they are read.",
+      "survivesRemoval": false,
+      "locatedInRender": true
+    },
+    {
+      "id": "two-formulas",
+      "reference": "Gate 2 structure",
+      "governs": "entry 01 is read image-first with its record hung off the car's shoulder; entry 02 is read record-first on the mirrored axis with a smaller exterior held high and the interior descending from the left bleed",
+      "implementedBy": "css/page.css @media (min-width: 80rem) .entry--01 / .entry--02 grid definitions",
+      "visibleAt": "entry 01 and entry 02",
+      "workItDoes": "entry 01 is read image-first with the record at the car's shoulder and the release in the lower LEFT; entry 02 is read record-first with a smaller exterior held high and the release in the lower RIGHT. Reconciled with the detector in gate2.humanInventory.",
+      "survivesRemoval": false,
+      "locatedInRender": true
+    },
+    {
+      "id": "record-as-plate",
+      "reference": "auction-editorial P3",
+      "governs": "every colour fact is a hairline spec plate with a subordinate key column, never a box, a card or a caption",
+      "implementedBy": "css/page.css .spec (grid, hairline border-block-start, subordinate key column)",
+      "visibleAt": "both entries",
+      "workItDoes": "the colour facts scan as a record rather than as marketing prose, and the value column forms the reading line.",
+      "survivesRemoval": false,
+      "locatedInRender": true
+    },
+    {
+      "id": "single-accent-role",
+      "reference": "color D3 / P6",
+      "governs": "Rosso appears in exactly one interface role, the primary control fill; the red of the marque reaches the page through the car itself",
+      "implementedBy": "css/page.css --rosso used only by .btn--primary",
+      "visibleAt": "cover CTA and enquiry submit",
+      "workItDoes": "Rosso marks where the action is and nowhere else; the marque's red reaches the page through the car itself. Measured: the accent occupies well under 1% of the first screen (cta share 0.5%).",
+      "survivesRemoval": false,
+      "locatedInRender": true
+    },
+    {
+      "id": "header-ground-threshold",
+      "reference": "U13",
+      "governs": "the masthead keeps a scrim while it is still travelling over the cover and takes an opaque ground only once its bottom edge has cleared the cover's",
+      "implementedBy": "js/page.js masthead--solid toggled at cover.offsetHeight - head.offsetHeight; css .masthead::before scrim",
+      "visibleAt": "on scroll, at the cover's lower edge",
+      "workItDoes": "no hard horizontal line is ever drawn through the headline: the bar keeps a scrim for the whole length of the cover and takes its opaque ground only after it has left it.",
+      "survivesRemoval": false,
+      "locatedInRender": true
+    },
+    {
+      "id": "mobile-plate-authored",
+      "reference": "C22 / C12",
+      "governs": "the mobile plate's width and offset are computed from the car's own centre so the subject is centred and whole at 390 and at 320 — not inherited from the desktop crop",
+      "implementedBy": "css/page.css .plate--cover { --plate-w: 132vw; margin-inline-start: calc((100% - var(--plate-w))/2 + .0385*var(--plate-w)) }",
+      "visibleAt": "cover at 390 and 320",
+      "workItDoes": "the car's own centre (0.4615 of the frame) lands on the viewport centre, so the subject is whole and symmetrically placed. Measured on the render: clearance 40.8px left and 40.8px right at 390, nothing clipped.",
+      "survivesRemoval": false,
+      "locatedInRender": true
+    }
+  ],
+  "humanConfirmed": true,
+  "blockers": [],
+  "verdict": "pass",
+  "finishedAt": "2026-08-28T23:47:39.990Z"
+}

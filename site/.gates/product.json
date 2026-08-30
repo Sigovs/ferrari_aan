@@ -1,0 +1,74 @@
+{
+  "gate": "Gate 3 · Product Usefulness",
+  "sourceSeal": "17078406856b9b57beabe55f47fa643d2f41662afaac1d42ec946a539d1c20f9",
+  "answers": {
+    "businessIdentifiableInFiveSeconds": null,
+    "primaryActionIdentifiableInFiveSeconds": null,
+    "primaryPathProminentAndUnderstandable": null,
+    "itemsScannableAndComparable": null,
+    "detailAffordancesVisibleWithoutInstruction": null,
+    "secondaryConversionsDiscoverable": null,
+    "mobilePreservesThePrimaryTask": null,
+    "noInteractionRequiresExplanatoryCopy": null,
+    "atLeastAsUsableAsTheIncumbent": null
+  },
+  "means": [
+    {
+      "name": "primary enquiry action, above the fold",
+      "selector": ".cover__cta .btn--primary",
+      "present": true,
+      "count": 1
+    },
+    {
+      "name": "enquiry form",
+      "selector": "#enquiry-form",
+      "present": true,
+      "count": 1
+    },
+    {
+      "name": "enquiry submit",
+      "selector": "#enquiry-form button[type=submit]",
+      "present": true,
+      "count": 1
+    },
+    {
+      "name": "collection index — a route to each composition",
+      "selector": ".index__link",
+      "present": true,
+      "count": 2
+    },
+    {
+      "name": "retailer identity",
+      "selector": ".lockup__name",
+      "present": true,
+      "count": 2
+    },
+    {
+      "name": "secondary route",
+      "selector": ".enquire .link",
+      "present": true,
+      "count": 1
+    },
+    {
+      "name": "the record for each composition",
+      "selector": ".spec",
+      "present": true,
+      "count": 2
+    }
+  ],
+  "humanConfirmed": false,
+  "note": "Generic usability is necessary and insufficient. This gate cannot pass a build on its own — Gate 2 and authorship are conjunctive with it.",
+  "blockers": [
+    "unanswered: businessIdentifiableInFiveSeconds",
+    "unanswered: primaryActionIdentifiableInFiveSeconds",
+    "unanswered: primaryPathProminentAndUnderstandable",
+    "unanswered: itemsScannableAndComparable",
+    "unanswered: detailAffordancesVisibleWithoutInstruction",
+    "unanswered: secondaryConversionsDiscoverable",
+    "unanswered: mobilePreservesThePrimaryTask",
+    "unanswered: noInteractionRequiresExplanatoryCopy",
+    "unanswered: atLeastAsUsableAsTheIncumbent"
+  ],
+  "verdict": "fail",
+  "finishedAt": "2026-08-28T23:47:56.831Z"
+}

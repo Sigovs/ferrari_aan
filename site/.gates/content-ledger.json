@@ -1,0 +1,111 @@
+{
+  "gate": "Gate 4 · Content Provenance",
+  "sourceSeal": "17078406856b9b57beabe55f47fa643d2f41662afaac1d42ec946a539d1c20f9",
+  "build": {
+    "kind": "retailer preview — standalone page, Cauley Ferrari masthead reproduced",
+    "private": false
+  },
+  "claims": [
+    {
+      "id": "year-1950s",
+      "claim": "a story that began in the 1950s",
+      "status": "verified",
+      "source": "Ferrari N.V. copy deck, 'Ferrari.com: Purosangue American Grand Tour Copy Deck (Brochure Imagery)', Cauley Ferrari edition, dated 24 Aug 2026 — Opening Manifesto Module, verbatim",
+      "sourceType": "client-document",
+      "appearsAt": [
+        ".manifesto__lead"
+      ]
+    },
+    {
+      "id": "livery-rosso-racing-2025",
+      "claim": "Rosso Racing 2025",
+      "status": "verified",
+      "source": "Ferrari N.V. copy deck, Cauley Ferrari edition, 24 Aug 2026 — Heritage Module, Mountain Pass entry: 'A composition of Rosso Racing 2025 with Bianco King livery and Blu Sterling leather'",
+      "sourceType": "client-document",
+      "appearsAt": [
+        ".entry--01 .entry__copy",
+        ".entry--01 .spec",
+        "dd"
+      ]
+    },
+    {
+      "id": "livery-mountain-pass-rest",
+      "claim": "Bianco King livery and Blu Sterling leather",
+      "status": "verified",
+      "source": "Ferrari N.V. copy deck, Cauley Ferrari edition, 24 Aug 2026 — Heritage Module, Mountain Pass entry",
+      "sourceType": "client-document",
+      "appearsAt": [
+        ".entry--01 .spec"
+      ]
+    },
+    {
+      "id": "livery-the-mountains",
+      "claim": "Verde Menthe and Beige Honolulu leather",
+      "status": "verified",
+      "source": "Ferrari N.V. copy deck, Cauley Ferrari edition, 24 Aug 2026 — Heritage Module, The Mountains entry. Note: no livery is named for this composition in the deck, so the record carries two rows and not three.",
+      "sourceType": "client-document",
+      "appearsAt": [
+        ".entry--02 .spec",
+        ".entry--02 .entry__copy"
+      ]
+    },
+    {
+      "id": "enquiry-endpoint",
+      "claim": "Sample form — endpoint not connected. Submissions are not sent.",
+      "status": "verified",
+      "source": "true of this build: js/page.js intercepts submit and sends nothing. Stated on the page so the placeholder is unmistakable in the render rather than only in this file.",
+      "sourceType": "build-fact",
+      "appearsAt": [
+        ".form__placeholder"
+      ]
+    },
+    {
+      "id": "retailer-contact",
+      "claim": "(absent)",
+      "status": "verified",
+      "source": "No address, telephone, opening hours or specialist name is published, because Cauley Ferrari supplied none. The enquiry form is the means of contact. Nothing was invented to fill the footer.",
+      "sourceType": "build-fact",
+      "appearsAt": []
+    }
+  ],
+  "harvested": [
+    {
+      "class": "bare-count",
+      "text": "2025",
+      "context": "A composition of Rosso Racing 2025 with Bianco King livery and Blu Sterling leather. It evokes the character of a road c",
+      "where": "section#plate-01 > div.entry__record > p.entry__copy"
+    },
+    {
+      "class": "year",
+      "text": "2025",
+      "context": "A composition of Rosso Racing 2025 with Bianco King livery and Blu Sterling leather. It evokes the character of a road c",
+      "where": "section#plate-01 > div.entry__record > p.entry__copy"
+    },
+    {
+      "class": "bare-count",
+      "text": "2025",
+      "context": "Rosso Racing 2025",
+      "where": "section#plate-01 > div.entry__record > dl.spec > dd"
+    },
+    {
+      "class": "year",
+      "text": "2025",
+      "context": "Rosso Racing 2025",
+      "where": "section#plate-01 > div.entry__record > dl.spec > dd"
+    }
+  ],
+  "validation": {
+    "verdict": "pass",
+    "problems": [],
+    "uncovered": [],
+    "counts": {
+      "hits": 4,
+      "entries": 6,
+      "uncovered": 0
+    }
+  },
+  "humanConfirmed": true,
+  "blockers": [],
+  "verdict": "pass",
+  "finishedAt": "2026-08-28T23:47:58.689Z"
+}

@@ -1,0 +1,493 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Purosangue American Grand Tour Atelier Collection — Cauley Ferrari
+   Standalone campaign page.
+
+   Ground rules this file holds to:
+   · one type family. Ferrari's identity runs on a single grotesque, so the
+     house three-voice system yields; the label register is carried by case,
+     tracking, size and dimmed ink instead of by a second family.
+   · one accent, in one role only — the primary control fill. The red of the
+     marque enters the page through the car, not through the interface.
+   · separation by air and hairline. No cards, no boxes, no shadows.
+   · every spacing value resolves to the scale below.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── tokens ───────────────────────────────────────────────────────────── */
+:root {
+  /* built in order: ground → ink → rules → accent */
+  --bg:           #0d0e11;   /* off-black, cool — matched to the renders' neutral */
+  --bg-0:         rgb(13 14 17 / 0);
+  --bg-deep:      #08090b;
+  --ink:          #f3f4f6;
+  --ink-80:       rgb(243 244 246 / .82);   /* body            11.7:1 */
+  --ink-55:       rgb(243 244 246 / .58);   /* labels           6.3:1 */
+  --rule:         rgb(243 244 246 / .24);   /* record hairlines        */
+  --rule-strong:  rgb(243 244 246 / .42);   /* control edges    3.8:1 */
+  --marque:       #a6a6a6;                  /* retailer name    7.9:1 */
+  --pool:         rgb(150 152 160 / .16);   /* sampled from the studio floor */
+
+  /* accent — measured from the supplied American Grand Tour badge (#a00909),
+     confirmed against the lead car's lit body (#bf2424) */
+  --rosso:        #a00909;
+  --rosso-lift:   #bf2424;
+
+  /* spacing — 4px base */
+  --space-1:  .25rem;  --space-2:  .5rem;   --space-3:  .75rem;
+  --space-4:  1rem;    --space-5:  1.5rem;  --space-6:  2rem;
+  --space-7:  3rem;    --space-8:  4rem;    --space-9:  6rem;
+  --space-10: 8rem;    --space-11: 12rem;
+
+  /* sections exhale downward — 1 : 1.5 → 1 : 2 */
+  --pad-top:    clamp(4rem, 8vw, 6rem);
+  --pad-bottom: clamp(6rem, 14vw, 12rem);
+
+  --gutter:    clamp(1.5rem, 4vw, 4.5rem);
+  --shell-max: 90rem;
+  --band-pad:  max(var(--gutter), calc((100vw - var(--shell-max)) / 2));
+  --head-h:    4.5rem;
+
+  /* type */
+  --font: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  --text-xs:      .875rem;                                  /* 14px — the floor */
+  --text-sm:      clamp(.9375rem, .25vw + .88rem, 1rem);
+  --text-body:    clamp(1rem, .3vw + .95rem, 1.0625rem);
+  --text-h3:      clamp(1.25rem, 1.1vw + .95rem, 1.75rem);
+  --text-h2:      clamp(1.625rem, 2.2vw + .85rem, 3rem);
+  --text-display: clamp(1.5rem, 2.25vw + .5rem, 2.875rem);
+
+  --dur: 220ms;
+  --ease: cubic-bezier(.22, .61, .36, 1);
+}
+@media (max-width: 22.5rem) { :root { --text-display: 1.375rem; } }
+
+/* ── reset ────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-block-start: var(--head-h); }
+html, body { overflow-x: clip; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--text-body);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img, svg { display: block; max-width: 100%; height: auto; }
+h1, h2, p, dl, dd, ol, figure { margin: 0; }
+ol { list-style: none; padding: 0; }
+a { color: inherit; }
+
+:where(a, button, input, textarea):focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.skip {
+  position: absolute; left: var(--space-4); top: var(--space-4);
+  transform: translateY(-200%);
+  background: var(--ink); color: var(--bg);
+  padding: var(--space-3) var(--space-5);
+  font-size: var(--text-xs); text-transform: uppercase; letter-spacing: .12em;
+  text-decoration: none; z-index: 100;
+}
+.skip:focus { transform: none; }
+
+/* the page's one measure: a padded full-width band, so any ground a section
+   paints reaches the viewport edge while its content stays on the shell */
+.band {
+  width: 100%;
+  padding-inline: var(--band-pad);
+}
+.band > * { min-width: 0; }
+
+/* ── shared type roles ────────────────────────────────────────────────── */
+.label {
+  font-size: var(--text-xs); line-height: 1.2; font-weight: 500;
+  text-transform: uppercase; letter-spacing: .16em; color: var(--ink-55);
+}
+.numeral { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--ink); }
+.label .numeral { margin-inline-end: var(--space-3); }
+.display {
+  font-size: var(--text-display); line-height: 1; font-weight: 600;
+  text-transform: uppercase; letter-spacing: -.005em;
+}
+.link {
+  display: inline-block;
+  font-size: var(--text-xs); font-weight: 500;
+  text-transform: uppercase; letter-spacing: .16em;
+  color: var(--ink-80); text-decoration: none;
+  padding-block-end: var(--space-2);
+  border-block-end: 1px solid var(--rule-strong);
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+.link:hover, .link:focus-visible { color: var(--ink); border-color: var(--ink); }
+
+/* ── controls ─────────────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 3rem; padding-inline: var(--space-6);
+  font-family: inherit; font-size: var(--text-xs); font-weight: 600;
+  text-transform: uppercase; letter-spacing: .16em; text-decoration: none;
+  border: 1px solid transparent; border-radius: 0; cursor: pointer;
+  transition: background-color var(--dur) var(--ease),
+              border-color var(--dur) var(--ease),
+              transform var(--dur) var(--ease);
+}
+.btn--primary { background: var(--rosso); color: #fff; }              /* 8.3:1 */
+.btn--primary:hover, .btn--primary:focus-visible {
+  background: var(--rosso-lift); transform: translateY(-2px);         /* 6.0:1 */
+}
+.btn--ghost { background: transparent; color: var(--ink); border-color: var(--rule-strong); }
+.btn--ghost:hover, .btn--ghost:focus-visible { border-color: var(--ink); transform: translateY(-2px); }
+.btn--sm { min-height: 2.5rem; padding-inline: var(--space-5); }
+.btn--lg { min-height: 3.5rem; padding-inline: var(--space-8); }
+
+/* ── masthead ─────────────────────────────────────────────────────────── */
+.masthead {
+  position: fixed; inset-block-start: 0; inset-inline: 0; z-index: 50;
+  transition: background-color var(--dur) var(--ease);
+}
+/* Over the cover the bar keeps a scrim and never a hard edge: an opaque ground
+   arriving early draws a line through the headline for the whole scroll. It
+   turns opaque only once its bottom edge has cleared the cover's. */
+.masthead::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(to bottom, rgb(8 9 11 / .9), var(--bg-0));
+  transition: opacity var(--dur) var(--ease);
+}
+.masthead--solid { background: var(--bg-deep); }
+.masthead--solid::before { opacity: 0; }
+
+.masthead__inner {
+  min-height: var(--head-h);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--space-5);
+}
+.lockup { display: flex; align-items: center; gap: var(--space-3); text-decoration: none; min-width: 0; }
+.lockup__mark { width: auto; height: 2.25rem; flex: none; }
+/* Below the tablet breakpoint the bar has room for the marque and the retailer
+   name but not for the OFFICIAL FERRARI DEALER sub-line. The full lockup is
+   carried in the colophon, so nothing is lost — it is re-composed, not dropped. */
+.lockup__mark--full { display: none; }
+@media (min-width: 48rem) {
+  .lockup { gap: var(--space-4); }
+  .lockup__mark--horse { display: none; }
+  .lockup__mark--full  { display: block; }
+}
+.lockup__rule { inline-size: 1px; block-size: 1.625rem; background: var(--rule); flex: none; }
+.lockup__name {
+  font-size: var(--text-xs); font-weight: 400;
+  text-transform: uppercase; letter-spacing: .12em;
+  color: var(--marque); white-space: nowrap;
+}
+.masthead__nav { display: flex; align-items: center; gap: var(--space-6); flex: none; }
+.masthead__nav .btn--sm { padding-inline: var(--space-4); letter-spacing: .12em; }
+@media (min-width: 48rem) { .masthead__nav .btn--sm { padding-inline: var(--space-5); letter-spacing: .16em; } }
+.masthead__link {
+  display: none;
+  font-size: var(--text-xs); font-weight: 500;
+  text-transform: uppercase; letter-spacing: .16em;
+  color: var(--ink-55); text-decoration: none; white-space: nowrap;
+  transition: color var(--dur) var(--ease);
+}
+.masthead__link:hover, .masthead__link:focus-visible { color: var(--ink); }
+@media (min-width: 48rem) { .masthead__link { display: inline; } }
+/* At 320 the bar cannot hold the marque, the retailer name and an action at
+   once. The action stays in the composition, where the cover already carries
+   it above the fold at this width. */
+@media (max-width: 22.5rem) { .masthead__nav { display: none; } }
+
+/* ── the plate ────────────────────────────────────────────────────────────
+   Every exterior is a plate: the supplied studio render, uncropped, its
+   rectangle dissolved by an elliptical mask so the car stands on the page
+   instead of sitting in a box. The ellipse is derived from the car's own
+   bounding box, measured on the source render — x 0.162–0.761, y 0.228–0.835
+   of the 16:9 frame, centre (0.4615, 0.5315). Radii 46% × 50% at 46% 50%
+   reach zero exactly at the frame's four edges and stay fully opaque out to
+   72% of the radius, which contains every extreme point of the silhouette.
+
+   The interiors are not plates. They are dark to all four edges with cabin
+   detail running into the crop, so they keep a committed rectangular frame:
+   the exteriors are objects on a floor, the interiors are a view. Two image
+   treatments, one rule, stated.
+   ─────────────────────────────────────────────────────────────────────── */
+.plate { position: relative; isolation: isolate; }
+.plate__img {
+  width: 100%;
+  --plate-mask: radial-gradient(46% 50% at 46% 50%,
+      #000 0 72%, rgb(0 0 0 / .55) 86%, rgb(0 0 0 / 0) 100%);
+  -webkit-mask-image: var(--plate-mask);
+          mask-image: var(--plate-mask);
+  -webkit-mask-size: 100% 100%;  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.plate__img--flat { -webkit-mask-image: none; mask-image: none; }
+
+/* the light the plate stands in — it belongs to the plate, so it travels
+   with it and never leaves an edge on the section's ground */
+.plate--cover::before,
+.plate--wide::before,
+.plate--quiet::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: radial-gradient(54% 44% at 46% 76%, var(--pool), var(--bg-0) 70%);
+}
+
+/* ── cover ────────────────────────────────────────────────────────────── */
+.cover {
+  position: relative; isolation: isolate;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: max-content max-content max-content;
+  grid-template-areas: "type" "plate" "aside";
+  padding-block: calc(var(--head-h) + var(--space-5)) var(--space-8);
+  row-gap: var(--space-5);
+  align-content: start;
+}
+.cover__ground {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  /* the authored field the cover's masses stand in: a top-down darkening that
+     lifts the first screen off the chapters below, plus the spill of the light
+     the car stands in. Both reach the section's bottom edge at exactly --bg,
+     so the ground hands over to the next chapter with no seam. */
+  background:
+    radial-gradient(46% 26% at 30% 72%, rgb(150 152 160 / .10), var(--bg-0) 100%),
+    linear-gradient(to bottom, var(--bg-deep) 0%, var(--bg) 38%, var(--bg) 100%);
+}
+.cover > :not(.cover__ground) { position: relative; z-index: 1; }
+
+.cover__type { grid-area: type; }
+.badge { width: clamp(6rem, 11vw, 8.75rem); margin-block-end: var(--space-5); }
+
+.cover__fig { grid-area: plate; align-self: end; }
+.plate--cover {
+  --plate-w: 132vw;
+  width: var(--plate-w);
+  /* centres the car's own centre (x = 0.4615 of the frame) on the viewport */
+  margin-inline-start: calc((100% - var(--plate-w)) / 2 + .0385 * var(--plate-w));
+}
+.cover__aside {
+  grid-area: aside;
+  display: flex; flex-direction: column; gap: var(--space-6); align-items: start;
+}
+.index { margin-block-start: var(--space-4); }
+.index__row + .index__row { border-block-start: 1px solid var(--rule); }
+.index__link {
+  display: flex; align-items: baseline; gap: var(--space-4);
+  padding-block: var(--space-3); text-decoration: none;
+}
+.index__no {
+  font-size: var(--text-xs); font-weight: 600; letter-spacing: .12em;
+  font-variant-numeric: tabular-nums; color: var(--ink-55);
+  transition: color var(--dur) var(--ease);
+}
+.index__name {
+  font-size: var(--text-h3); font-weight: 500; line-height: 1.1;
+  text-transform: uppercase; letter-spacing: .01em;
+}
+.index__link:hover .index__no, .index__link:focus-visible .index__no { color: var(--ink); }
+
+/* ── manifesto — the page's one pause ─────────────────────────────────── */
+.manifesto { padding-block: var(--pad-top) var(--pad-bottom); border-block-start: 1px solid var(--rule); }
+.manifesto__lead {
+  max-width: 40ch;
+  /* held decisively in the right half, against the heritage headline that
+     follows it on the left — the page alternates axis rather than centring */
+  margin-inline-start: 0;
+  font-size: var(--text-h3);
+  line-height: 1.45;
+  color: var(--ink);
+  text-wrap: pretty;
+}
+
+/* ── heritage ─────────────────────────────────────────────────────────── */
+@media (min-width: 48rem) { .manifesto__lead { margin-inline-start: 52%; } }
+
+.heritage {
+  padding-block: var(--pad-top) var(--pad-bottom);
+  border-block-start: 1px solid var(--rule);
+  display: grid; gap: var(--space-7);
+}
+.heritage__h {
+  font-size: var(--text-h2); line-height: 1.02; font-weight: 600;
+  text-transform: uppercase; letter-spacing: -.005em;
+}
+.heritage__body { max-width: 60ch; color: var(--ink-80); text-wrap: pretty; }
+
+/* ── entries ──────────────────────────────────────────────────────────── */
+.entry {
+  padding-block: var(--pad-top) var(--pad-bottom);
+  border-block-start: 1px solid var(--rule);
+  display: grid; gap: var(--space-8);
+}
+.entry__h {
+  margin-block: var(--space-4) var(--space-5);
+  font-size: var(--text-h2); line-height: 1.02; font-weight: 600;
+  text-transform: uppercase; letter-spacing: -.005em;
+}
+.entry__copy { max-width: 46ch; color: var(--ink-80); text-wrap: pretty; }
+
+.spec {
+  margin-block-start: var(--space-7);
+  display: grid; grid-template-columns: minmax(6rem, 9rem) 1fr;
+  column-gap: var(--space-6); row-gap: 0;
+}
+.spec dt {
+  padding-block: var(--space-3); border-block-start: 1px solid var(--rule);
+  font-size: var(--text-xs); font-weight: 500;
+  text-transform: uppercase; letter-spacing: .14em; color: var(--ink-55);
+}
+.spec dd {
+  padding-block: var(--space-3); border-block-start: 1px solid var(--rule);
+  font-size: var(--text-sm); font-variant-numeric: tabular-nums;
+}
+
+/* plate widths below the two-column breakpoint — authored, not inherited */
+.entry--01 .entry__ext .plate { --plate-w: 118vw; width: var(--plate-w);
+  margin-inline-start: calc((100% - var(--plate-w)) / 2 + .0385 * var(--plate-w)); }
+.entry--02 .entry__ext .plate { --plate-w: 108vw; width: var(--plate-w);
+  margin-inline-start: calc((100% - var(--plate-w)) / 2 + .0385 * var(--plate-w)); }
+.entry--02 .entry__int .plate { width: calc(100% + 2 * var(--band-pad)); margin-inline: calc(var(--band-pad) * -1); }
+
+/* ── enquiry ──────────────────────────────────────────────────────────── */
+.enquire {
+  padding-block: var(--pad-top) var(--pad-bottom);
+  border-block-start: 1px solid var(--rule);
+  display: grid; gap: var(--space-9);
+}
+.enquire__h {
+  margin-block: var(--space-4) var(--space-5);
+  font-size: var(--text-h2); line-height: 1.02; font-weight: 600;
+  text-transform: uppercase; letter-spacing: -.005em;
+}
+.enquire__note { max-width: 36ch; color: var(--ink-80); margin-block-end: var(--space-6); }
+
+.form { display: grid; gap: var(--space-6); align-content: start; }
+.form__row { display: grid; gap: var(--space-3); }
+.form__label {
+  font-size: var(--text-xs); font-weight: 500;
+  text-transform: uppercase; letter-spacing: .14em; color: var(--ink-55);
+}
+.form__field {
+  font-family: inherit; font-size: var(--text-body); color: var(--ink);
+  background: transparent; border: 0;
+  border-block-end: 1px solid var(--rule-strong);
+  padding-block: var(--space-3); border-radius: 0;
+  transition: border-color var(--dur) var(--ease);
+}
+.form__field:hover { border-color: var(--ink-55); }
+textarea.form__field { resize: vertical; line-height: 1.5; }
+.form__placeholder {
+  font-size: var(--text-xs); font-weight: 500;
+  text-transform: uppercase; letter-spacing: .12em; color: var(--ink-55);
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--rule);
+}
+.form .btn { justify-self: start; }
+.form__status { font-size: var(--text-xs); color: var(--ink-80); }
+.form__status:empty { display: none; }
+
+/* ── colophon ─────────────────────────────────────────────────────────── */
+.colophon { background: var(--bg-deep); border-block-start: 1px solid var(--rule); }
+.colophon__inner { padding-block: var(--space-9) var(--space-10); display: grid; gap: var(--space-7); }
+.colophon__note { max-width: 50ch; font-size: var(--text-xs); line-height: 1.6; color: var(--ink-55); }
+.lockup--footer .lockup__mark--horse { display: none; }
+.lockup--footer .lockup__mark--full  { display: block; height: clamp(2rem, 5vw, 2.75rem); }
+@media (max-width: 30rem) {
+  .lockup--footer { flex-direction: column; align-items: start; gap: var(--space-4); }
+  .lockup--footer .lockup__rule { display: none; }
+}
+
+/* ═══ ≥ 48rem ════════════════════════════════════════════════════════ */
+@media (min-width: 48rem) {
+  .heritage { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--space-9); }
+  .heritage__h    { grid-column: 1; }
+  .heritage__body { grid-column: 2; align-self: end; }
+  .index__link { padding-block: var(--space-4); }
+  .plate--cover { --plate-w: 78vw; }
+  .entry--01 .entry__ext .plate { --plate-w: 84vw; }
+  .entry--02 .entry__ext .plate { --plate-w: 76vw; }
+}
+
+@media (min-width: 64rem) {
+  .colophon__inner {
+    grid-template-columns: auto minmax(0, 26rem);
+    justify-content: space-between; align-items: end;
+  }
+}
+
+/* ═══ ≥ 80rem — the two-column compositions ══════════════════════════ */
+@media (min-width: 80rem) {
+
+  /* COVER — the car holds the left field and points into the type; the record
+     and the action sit in the air its nose opens. */
+  .cover {
+    grid-template-columns: minmax(0, 55fr) minmax(0, 45fr);
+    grid-template-rows: max-content minmax(0, 1fr);
+    grid-template-areas: "plate type" "plate aside";
+    column-gap: clamp(2rem, 5vw, 5rem);
+    row-gap: var(--space-7);
+    padding-block: calc(var(--head-h) + var(--space-8)) var(--space-9);
+    align-content: stretch;
+  }
+  .cover__type  { align-self: start; }
+  .cover__aside { align-self: end; padding-block-end: var(--space-8); }
+  .plate--cover {
+    width: calc(100% + var(--band-pad) + 6vw);
+    margin-inline-start: calc((var(--band-pad) + 6vw) * -1);
+  }
+
+  /* ENTRY 01 — the exterior leads from the left bleed, the record is held at
+     the car's shoulder, the interior enters small and low beneath it. The
+     empty lower-left quarter is the section's release. */
+  .entry--01 {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+    grid-template-rows: auto auto;
+    column-gap: clamp(2rem, 5vw, 5rem);
+    row-gap: clamp(3rem, 6vw, 6rem);
+  }
+  .entry--01 .entry__ext { grid-area: 1 / 1 / 2 / 2; align-self: center; }
+  .entry--01 .entry__ext .plate {
+    width: calc(100% + var(--band-pad) + 6vw);
+    margin-inline-start: calc((var(--band-pad) + 6vw) * -1);
+  }
+  .entry--01 .entry__record { grid-area: 1 / 2 / 2 / 3; align-self: center; }
+  .entry--01 .entry__int    { grid-area: 2 / 2 / 3 / 3; }
+  .entry--01 .entry__int .plate { width: 100%; margin: 0; }
+
+  /* ENTRY 02 — read record-first, on the mirrored axis. Entry 01 opens with
+     the image and hangs its record off the car's shoulder; this one opens with
+     the record, holds a smaller exterior high on the opposite side, and lets
+     the interior descend from the left bleed. Order, axis and scale all differ
+     — the same two masses arranged as a different argument. */
+  .entry--02 {
+    grid-template-columns: minmax(0, 34rem) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: clamp(2rem, 5vw, 5rem);
+    row-gap: clamp(3rem, 6vw, 6rem);
+  }
+  .entry--02 .entry__record { grid-area: 1 / 1 / 2 / 2; align-self: center; }
+  .entry--02 .entry__ext { grid-area: 1 / 2 / 2 / 3; align-self: start; }
+  .entry--02 .entry__ext .plate {
+    width: calc(100% + var(--band-pad) + 4vw);
+    margin-inline: 0 calc((var(--band-pad) + 4vw) * -1);
+  }
+  .entry--02 .entry__int { grid-area: 2 / 1 / 3 / 3; }
+  .entry--02 .entry__int .plate {
+    width: calc(50% + var(--band-pad));
+    margin-inline: calc(var(--band-pad) * -1) 0;
+  }
+
+  /* ENQUIRY */
+  .enquire { grid-template-columns: minmax(0, 46fr) minmax(0, 54fr); gap: var(--space-9); }
+  .form { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .form__row--wide, .form__placeholder, .form .btn, .form__status { grid-column: 1 / -1; }
+}
+
+/* ── reduced motion — the static page is the page ─────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition-duration: 1ms !important; animation-duration: 1ms !important; }
+  .btn:hover, .btn:focus-visible { transform: none; }
+}

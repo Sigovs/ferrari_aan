@@ -1,0 +1,88 @@
+{
+  "project": "cauley-ferrari-purosangue-american-grand-tour",
+  "declaredOn": "2026-08-28",
+  "primaryViewport": "desktop",
+  "viewports": [
+    { "label": "desktop", "w": 1440, "h": 900 },
+    { "label": "mobile", "w": 390, "h": 844 }
+  ],
+
+  "governingIdea": "The collection is a plate book. Each Atelier composition is a catalogue plate — the supplied studio render with its rectangle dissolved so the car stands in a pool of light on the page's own ground — and the colour facts are its record, set as a hairline plate rather than as marketing copy. The page is read as a set of two entries, not as two campaign frames.",
+
+  "a1": {
+    "floor": 0.9,
+    "eventStatement": "A Purosangue in the collection's lead Atelier composition stands lit on the page's ground while the collection names itself, lists its two entries and offers the one action the visitor came for.",
+    "components": [
+      { "role": "field",    "selector": ".cover__ground", "function": "the authored ground the masses stand in — a top-down darkening plus the spill of the light the car stands in" },
+      { "role": "subject",  "selector": ".plate--cover",  "function": "the vehicle, at the scale its source composition gives it, uncropped" },
+      { "role": "identity", "selector": ".cover__type",   "function": "the American Grand Tour badge and the collection's name" },
+      { "role": "support",  "selector": ".cover__index",  "function": "the collection's own contents — the two compositions, named and numbered" },
+      { "role": "cta",      "selector": ".cover__cta",    "function": "the enquiry, placed in the air the car's nose opens" }
+    ],
+    "excluded": [
+      { "selector": ".masthead", "why": "persistent chrome — the retailer masthead is the frame, not part of the event" }
+    ]
+  },
+
+  "commitments": [
+    { "metric": "horizontalOverflow", "viewport": "desktop", "equals": false, "why": "U6 — no horizontal page scroll at any width" },
+    { "metric": "horizontalOverflow", "viewport": "mobile",  "equals": false, "why": "U6" },
+    { "metric": "smallestTypePx",     "viewport": "desktop", "min": 14, "why": "typography I7 — the functional-text floor" },
+    { "metric": "smallestTypePx",     "viewport": "mobile",  "min": 14, "why": "typography I7" },
+    { "metric": "typeScaleRatio",     "viewport": "desktop", "min": 2.5, "why": "one display rank, unmistakably first" },
+    { "metric": "screens",            "viewport": "desktop", "max": 8, "why": "a two-entry collection is a short book, not a scroll" }
+  ],
+
+  "operations": [
+    { "id": "plate-mask", "reference": "C22 / C9",
+      "governs": "the presentation of every exterior: an elliptical mask derived from the car's measured bounding box (x 0.162-0.761, y 0.228-0.835 of the 16:9 frame) reaches zero at the frame's four edges and stays opaque past every extreme point of the silhouette, so the studio rectangle dissolves and the car stands on the page uncropped" },
+    { "id": "pool-of-light", "reference": "U17",
+      "governs": "the plate carries its own field, so no layer edge is ever hidden only by the ground beneath it" },
+    { "id": "interior-frame-committed", "reference": "C9 / U11",
+      "governs": "interiors keep a rectangular frame while exteriors dissolve — two image treatments, one stated rule: an exterior is an object on a floor, an interior is a view" },
+    { "id": "axis-alternation", "reference": "C6 / C7",
+      "governs": "the page alternates axis rather than centring — manifesto right, heritage headline left, entry 01 image-left, entry 02 record-left" },
+    { "id": "two-formulas", "reference": "Gate 2 structure",
+      "governs": "entry 01 is read image-first with its record hung off the car's shoulder; entry 02 is read record-first on the mirrored axis with a smaller exterior held high and the interior descending from the left bleed" },
+    { "id": "record-as-plate", "reference": "auction-editorial P3",
+      "governs": "every colour fact is a hairline spec plate with a subordinate key column, never a box, a card or a caption" },
+    { "id": "single-accent-role", "reference": "color D3 / P6",
+      "governs": "Rosso appears in exactly one interface role, the primary control fill; the red of the marque reaches the page through the car itself" },
+    { "id": "header-ground-threshold", "reference": "U13",
+      "governs": "the masthead keeps a scrim while it is still travelling over the cover and takes an opaque ground only once its bottom edge has cleared the cover's" },
+    { "id": "mobile-plate-authored", "reference": "C22 / C12",
+      "governs": "the mobile plate's width and offset are computed from the car's own centre so the subject is centred and whole at 390 and at 320 — not inherited from the desktop crop" }
+  ],
+
+  "hero": {
+    "selector": ".cover",
+    "mediaSelector": "#cover-media",
+    "navSelector": ".masthead",
+    "copySelector": "#cover-headline",
+    "natural": { "w": 2000, "h": 1125 },
+    "focal": { "x": 0.46, "y": 0.53 },
+    "samples": [
+      { "t": 0, "box": { "x": 0.162, "y": 0.228, "w": 0.599, "h": 0.607 } }
+    ],
+    "subjectBoxSource": "measured on img/road-mountain-pass-ext-2000.webp by thresholding chroma and dark trim against the neutral studio ground; columns and rows agree to within 2px across three thresholds",
+    "perViewport": {
+      "desktop": { "textSafe": { "x": 0.569, "y": 0.151, "w": 0.392, "h": 0.216 } },
+      "mobile":  { "textSafe": { "x": 0.062, "y": 0.114, "w": 0.877, "h": 0.153 } }
+    }
+  },
+
+  "means": [
+    { "name": "primary enquiry action, above the fold", "selector": ".cover__cta .btn--primary" },
+    { "name": "enquiry form", "selector": "#enquiry-form" },
+    { "name": "enquiry submit", "selector": "#enquiry-form button[type=submit]" },
+    { "name": "collection index — a route to each composition", "selector": ".index__link" },
+    { "name": "retailer identity", "selector": ".lockup__name" },
+    { "name": "secondary route", "selector": ".enquire .link" },
+    { "name": "the record for each composition", "selector": ".spec" }
+  ],
+
+  "build": {
+    "kind": "retailer preview — standalone page, Cauley Ferrari masthead reproduced",
+    "private": false
+  }
+}

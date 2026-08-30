@@ -1,0 +1,341 @@
+{
+  "gate": "Gate 1 · Measurable Conformance",
+  "sourceSeal": "17078406856b9b57beabe55f47fa643d2f41662afaac1d42ec946a539d1c20f9",
+  "fileCount": 14,
+  "page": "index.html",
+  "measured": {
+    "desktop": {
+      "pageHeightPx": 5381,
+      "screens": 5.98,
+      "mediaTotal": 10,
+      "fullBleedMedia": 0,
+      "largestTypePx": 45,
+      "smallestTypePx": 14,
+      "typeScaleRatio": 3.23,
+      "horizontalOverflow": false,
+      "errors": []
+    },
+    "mobile": {
+      "pageHeightPx": 5626,
+      "screens": 6.67,
+      "mediaTotal": 10,
+      "fullBleedMedia": 4,
+      "largestTypePx": 26,
+      "smallestTypePx": 14,
+      "typeScaleRatio": 1.86,
+      "horizontalOverflow": false,
+      "errors": []
+    }
+  },
+  "a1": {
+    "desktop": {
+      "rule": "A1 — one governing event owns the first screen, and everything else defers to it",
+      "eventStatement": "A Purosangue in the collection's lead Atelier composition stands lit on the page's ground while the collection names itself, lists its two entries and offers the one action the visitor came for.",
+      "floor": 0.9,
+      "metrics": {
+        "eventCoverage": 1,
+        "mediaCoverage": 0.28,
+        "competitionRatio": 0,
+        "structuralShare": 1,
+        "negativeSpaceShare": 0,
+        "rankMassShare": 0.393,
+        "subjectShareOfEvent": 0.293,
+        "chromeShare": 0.08,
+        "declaredMasses": 4,
+        "readsWithoutMedia": true
+      },
+      "envelope": {
+        "x": 0,
+        "y": 0,
+        "w": 1440,
+        "h": 900
+      },
+      "components": [
+        {
+          "role": "field",
+          "selector": ".cover__ground",
+          "function": "the authored ground the masses stand in — a top-down darkening plus the spill of the light the car stands in",
+          "matched": 1,
+          "inDocument": 1,
+          "hasMedia": false,
+          "share": 1,
+          "isWrapper": true,
+          "rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1440,
+              "h": 900
+            }
+          ]
+        },
+        {
+          "role": "subject",
+          "selector": ".plate--cover",
+          "function": "the vehicle, at the scale its source composition gives it, uncropped",
+          "matched": 1,
+          "inDocument": 1,
+          "hasMedia": true,
+          "share": 0.27,
+          "isWrapper": false,
+          "rects": [
+            {
+              "x": 0,
+              "y": 336,
+              "w": 747,
+              "h": 468
+            }
+          ]
+        },
+        {
+          "role": "identity",
+          "selector": ".cover__type",
+          "function": "the American Grand Tour badge and the collection's name",
+          "matched": 1,
+          "inDocument": 1,
+          "hasMedia": true,
+          "share": 0.084,
+          "isWrapper": false,
+          "rects": [
+            {
+              "x": 819,
+              "y": 136,
+              "w": 564,
+              "h": 194
+            }
+          ]
+        },
+        {
+          "role": "support",
+          "selector": ".cover__index",
+          "function": "the collection's own contents — the two compositions, named and numbered",
+          "matched": 1,
+          "inDocument": 1,
+          "hasMedia": false,
+          "share": 0.033,
+          "isWrapper": false,
+          "rects": [
+            {
+              "x": 819,
+              "y": 500,
+              "w": 269,
+              "h": 160
+            }
+          ]
+        },
+        {
+          "role": "cta",
+          "selector": ".cover__cta",
+          "function": "the enquiry, placed in the air the car's nose opens",
+          "matched": 1,
+          "inDocument": 1,
+          "hasMedia": false,
+          "share": 0.005,
+          "isWrapper": false,
+          "rects": [
+            {
+              "x": 819,
+              "y": 692,
+              "w": 146,
+              "h": 48
+            }
+          ]
+        }
+      ],
+      "negativeSpace": [],
+      "competitors": [],
+      "excluded": [
+        {
+          "selector": ".masthead",
+          "why": "persistent chrome — the retailer masthead is the frame, not part of the event",
+          "matched": 1
+        }
+      ],
+      "problems": [],
+      "verdict": "pass",
+      "label": "desktop",
+      "evidence": "/Users/alex/Desktop/WORK/CAULEY FERRARI/____AUGUST NEW PAGE POURSANG/site/.gates/evidence/a1-desktop.png"
+    },
+    "mobile": {
+      "rule": "A1 — one governing event owns the first screen, and everything else defers to it",
+      "eventStatement": "A Purosangue in the collection's lead Atelier composition stands lit on the page's ground while the collection names itself, lists its two entries and offers the one action the visitor came for.",
+      "floor": 0.9,
+      "metrics": {
+        "eventCoverage": 1,
+        "mediaCoverage": 0.356,
+        "competitionRatio": 0,
+        "structuralShare": 1,
+        "negativeSpaceShare": 0,
+        "rankMassShare": 0.602,
+        "subjectShareOfEvent": 0.375,
+        "chromeShare": 0.085,
+        "declaredMasses": 4,
+        "readsWithoutMedia": true
+      },
+      "envelope": {
+        "x": 0,
+        "y": 0,
+        "w": 390,
+        "h": 844
+      },
+      "components": [
+        {
+          "role": "field",
+          "selector": ".cover__ground",
+          "function": "the authored ground the masses stand in — a top-down darkening plus the spill of the light the car stands in",
+          "matched": 1,
+          "inDocument": 1,
+          "hasMedia": false,
+          "share": 1,
+          "isWrapper": true,
+          "rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 390,
+              "h": 844
+            }
+          ]
+        },
+        {
+          "role": "subject",
+          "selector": ".plate--cover",
+          "function": "the vehicle, at the scale its source composition gives it, uncropped",
+          "matched": 1,
+          "inDocument": 1,
+          "hasMedia": true,
+          "share": 0.343,
+          "isWrapper": false,
+          "rects": [
+            {
+              "x": 0,
+              "y": 249,
+              "w": 390,
+              "h": 289
+            }
+          ]
+        },
+        {
+          "role": "identity",
+          "selector": ".cover__type",
+          "function": "the American Grand Tour badge and the collection's name",
+          "matched": 1,
+          "inDocument": 1,
+          "hasMedia": true,
+          "share": 0.134,
+          "isWrapper": false,
+          "rects": [
+            {
+              "x": 24,
+              "y": 96,
+              "w": 342,
+              "h": 129
+            }
+          ]
+        },
+        {
+          "role": "support",
+          "selector": ".cover__index",
+          "function": "the collection's own contents — the two compositions, named and numbered",
+          "matched": 1,
+          "inDocument": 1,
+          "hasMedia": false,
+          "share": 0.104,
+          "isWrapper": false,
+          "rects": [
+            {
+              "x": 24,
+              "y": 563,
+              "w": 259,
+              "h": 132
+            }
+          ]
+        },
+        {
+          "role": "cta",
+          "selector": ".cover__cta",
+          "function": "the enquiry, placed in the air the car's nose opens",
+          "matched": 1,
+          "inDocument": 1,
+          "hasMedia": false,
+          "share": 0.021,
+          "isWrapper": false,
+          "rects": [
+            {
+              "x": 24,
+              "y": 727,
+              "w": 146,
+              "h": 48
+            }
+          ]
+        }
+      ],
+      "negativeSpace": [],
+      "competitors": [],
+      "excluded": [
+        {
+          "selector": ".masthead",
+          "why": "persistent chrome — the retailer masthead is the frame, not part of the event",
+          "matched": 1
+        }
+      ],
+      "problems": [],
+      "verdict": "pass",
+      "label": "mobile",
+      "evidence": "/Users/alex/Desktop/WORK/CAULEY FERRARI/____AUGUST NEW PAGE POURSANG/site/.gates/evidence/a1-mobile.png"
+    }
+  },
+  "commitments": [
+    {
+      "metric": "horizontalOverflow",
+      "viewport": "desktop",
+      "equals": false,
+      "why": "U6 — no horizontal page scroll at any width",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "metric": "horizontalOverflow",
+      "viewport": "mobile",
+      "equals": false,
+      "why": "U6",
+      "actual": false,
+      "pass": true
+    },
+    {
+      "metric": "smallestTypePx",
+      "viewport": "desktop",
+      "min": 14,
+      "why": "typography I7 — the functional-text floor",
+      "actual": 14,
+      "pass": true
+    },
+    {
+      "metric": "smallestTypePx",
+      "viewport": "mobile",
+      "min": 14,
+      "why": "typography I7",
+      "actual": 14,
+      "pass": true
+    },
+    {
+      "metric": "typeScaleRatio",
+      "viewport": "desktop",
+      "min": 2.5,
+      "why": "one display rank, unmistakably first",
+      "actual": 3.23,
+      "pass": true
+    },
+    {
+      "metric": "screens",
+      "viewport": "desktop",
+      "max": 8,
+      "why": "a two-entry collection is a short book, not a scroll",
+      "actual": 5.98,
+      "pass": true
+    }
+  ],
+  "verdict": "pass",
+  "finishedAt": "2026-08-28T23:47:35.670Z",
+  "blockers": []
+}
