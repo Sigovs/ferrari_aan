@@ -1,0 +1,156 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   v2 — the gallery grid replaced by side-by-side pairs.
+
+   Loaded only by the *_v2.html pages, after page.css, so the v1 pages on the
+   server are untouched by anything in here.
+
+   The one change: where v1 laid every supplied frame into an even four-across
+   rack of 328 x 220 cover-crops, v2 sets each composition as Ferrari does on
+   the Tier 1 page — a large exterior and a small interior beside it, tops
+   aligned, the interior finishing well short of the exterior's bottom edge.
+   That shortfall is the composition, not a gap to be closed: it is what makes
+   the pair read as one dominant frame with a subordinate beside it rather than
+   as two equal tiles.
+
+   Measured from ferrari.com at 1440: exterior 695, gap 32, interior 489, on a
+   1216 content width, tops aligned. 695 / 489 is 57 / 40, which is what the
+   grid below sets. Both halves are 16:9 here, so the height relationship falls
+   out of the widths: 1.42 against Ferrari's 1.38.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.pairs {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 5rem);
+}
+
+.pair {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 57fr 40fr;
+  gap: 32px;
+  align-items: start;   /* tops aligned — the interior is short by design */
+}
+
+.pair img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Every pair set the same way is a column of identical L-shapes, and by the
+   third one the eye stops reading compositions and starts reading a template.
+   So the pairs alternate: odd rows put the exterior left, even rows put it
+   right. The DOM order never changes — exterior first, interior second, which
+   is the order the deck names them and the order a screen reader gets — only
+   the columns swap, so the alternation is presentational and costs nothing in
+   reading order.
+
+   The 57 / 40 relationship is not mirrored along with the position: the
+   exterior stays the dominant frame on both sides. What alternates is which
+   edge the weight sits against, and that is the whole point — the page gains a
+   rhythm instead of a repetition. */
+.pair:nth-child(even) {
+  grid-template-columns: 40fr 57fr;
+}
+.pair:nth-child(even) .pair__int { grid-column: 1; grid-row: 1; }
+.pair:nth-child(even) .pair__ext { grid-column: 2; grid-row: 1; }
+
+/* Below the two-column threshold the pair stacks and the size relationship has
+   to be re-established, because stacked full-width frames are equal frames.
+   The interior keeps its subordinate rank by inset rather than by scale, on the
+   side the exterior's own composition leaves quietest. */
+@media (max-width: 60rem) {
+  .pair,
+  .pair:nth-child(even) {          /* matches the alternation's own specificity */
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  /* The alternation places both frames on one row explicitly, so the stack has
+     to hand the placement back — otherwise the even pair keeps an implicit
+     second column and never stacks at all. */
+  .pair:nth-child(even) .pair__ext,
+  .pair:nth-child(even) .pair__int {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .pair img.pair__int {   /* the selector carries the img to outrank `.pair img` above */
+    width: 72%;
+    margin-inline-start: auto;
+  }
+  /* the stagger survives the stack: the interior hangs off the opposite edge */
+  .pair:nth-child(even) img.pair__int {
+    margin-inline: 0 auto;
+  }
+}
+
+/* ── the hole under the last plate ────────────────────────────────────────
+   `.composition` carries `--pad-bottom` (12rem at its cap) below the sticky
+   stack. Under a normal section that is breathing room; under this one it is
+   192px of empty ground below a plate that already ends on a designed edge,
+   and it reads as a gap rather than as air. The stack's last panel is the
+   section's bottom edge, so the section stops there and the next band's own
+   top padding does the separating. */
+.composition { padding-block-end: 0; }
+
+/* ── motion tokens ────────────────────────────────────────────────────────
+   page.css documents --dur (.2s, opacity) and --dur-move (.3s, transform) for
+   state changes. An arrival is a longer event than a state change and needs
+   its own entry rather than a number typed at the call site. */
+:root {
+  --dur-arrive:  .55s;
+  --ease-arrive: cubic-bezier(.22, 1, .36, 1);   /* decelerates into place */
+  --arrive-rise: 32px;
+  --arrive-step: 200ms;   /* the interior lands while the exterior settles, not with it */
+}
+
+/* ── the pairs arrive from below, one at a time ───────────────────────────
+   The house default caps content travel at 8px, on the grounds that a longer
+   move asserts the content flew in from somewhere. That default is yielded
+   here on Alex's explicit direction — the brief is a slide-in from below — and
+   32px is the least travel that still reads as arriving rather than as a
+   fade. Opacity and transform only, so no frame does layout work.
+
+   `.is-waiting` is added by page-v2.js and never by this file: with the script
+   absent, or under prefers-reduced-motion, no rule here applies and every
+   frame is simply in place. */
+.pairs .pair img.is-waiting {
+  opacity: 0;
+  transform: translateY(var(--arrive-rise));
+  transition:
+    opacity   var(--dur-arrive) var(--ease-arrive),
+    transform var(--dur-arrive) var(--ease-arrive);
+}
+.pairs .pair img.is-waiting.is-in {
+  opacity: 1;
+  transform: none;
+}
+/* the interior follows its own exterior rather than landing beside it */
+.pairs .pair .pair__int.is-waiting { transition-delay: var(--arrive-step); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pairs .pair img.is-waiting { opacity: 1; transform: none; transition: none; }
+}
+
+/* ── the navigation band pins, as it does on cauleyferrari.com ────────────
+   The contact bar rides away with the page; the band stays. `.header` is
+   absolute, so lifting the band out of its flow costs no reflow below it. */
+body.nav-pinned .header__navigation-section {
+  position: fixed; inset-inline: 0; inset-block-start: 0; z-index: 10;
+}
+@media (max-width: 64rem) {
+  /* no contact bar to lose down here, so the whole header pins at once */
+  body.nav-pinned .header { position: fixed; }
+  body.nav-pinned .header__navigation-section { position: relative; }
+}
+
+/* ── the hero closes into the band below it ───────────────────────────────
+   The hero's own scrim stops at 88% black, which is a hard edge against the
+   page ground where the section meets it. This carries the last stretch the
+   rest of the way to --bg, so the frame ends by becoming the page rather than
+   by stopping. Sits above the image and below the type. */
+.hero__inner { position: relative; z-index: 1; }
+.hero::after {
+  content: ""; position: absolute; inset-inline: 0; inset-block-end: 0;
+  block-size: 34%; pointer-events: none; z-index: 0;
+  background: linear-gradient(to bottom, var(--bg-0) 0%, rgb(13 14 17 / .72) 62%, var(--bg) 100%);
+}
