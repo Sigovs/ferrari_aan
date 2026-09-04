@@ -164,3 +164,30 @@ body.nav-pinned .header__navigation-section {
   block-size: 34%; pointer-events: none; z-index: 0;
   background: linear-gradient(to bottom, var(--bg-0) 0%, rgb(13 14 17 / .72) 62%, var(--bg) 100%);
 }
+
+/* ── the heritage chapter, with its image removed ─────────────────────────
+   Client note of 3 Sep: "Please remove the static image altogether from
+   A landscape made for grand touring." Removed — and once the photograph is
+   gone every rule that existed to serve it has to go with it, or the section
+   is a 88svh hole with the copy pinned to the bottom-right of nothing.
+
+   So: the forced viewport height was there to hold a picture and goes; the
+   scrim had nothing left to darken; white ink was for type over a photograph
+   and returns to the page's own ink; and the copy comes back to the left axis
+   and the page's measure instead of hanging off a frame's bottom-right corner.
+   What is left is a type chapter — marker, headline, one paragraph — set like
+   the rest of the page rather than like a poster with the poster taken away. */
+.chapter {
+  min-height: 0;
+  overflow: visible;
+  padding-block: var(--pad-top) var(--pad-bottom);
+}
+.chapter__foot {
+  margin-block-start: clamp(1.5rem, 4vw, 3rem);
+  justify-content: flex-start;
+}
+.chapter__type {
+  max-width: 46rem;
+  color: var(--ink);
+}
+.chapter__type .copy { color: var(--ink-80); }
