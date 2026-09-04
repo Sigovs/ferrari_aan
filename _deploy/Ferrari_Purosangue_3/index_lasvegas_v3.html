@@ -184,10 +184,13 @@
   <!-- ══ 1 · HERITAGE ══ -->
   <section class="chapter" id="heritage" aria-labelledby="heritage-h">
     <div class="chapter__bg">
-      <img class="chapter__still" src="img/chapter-sands-1000.webp"
-           srcset="img/chapter-sands-1000.webp 1000w, img/chapter-sands-1920.webp 1920w"
-           sizes="100vw" width="1920" height="1080" loading="lazy"
-           alt="Ferrari Purosangue on the white sands of an American desert.">
+      <video class="chapter__video" autoplay muted loop playsinline
+             preload="none" poster="video/forests-poster.jpg"
+             width="1280" height="720" aria-label="Ferrari Purosangue on a forest road beneath towering canopies.">
+        <source src="video/forests.mp4" type="video/mp4">
+        <img class="chapter__still" src="video/forests-poster.jpg"
+             width="1600" height="900" loading="lazy" alt="Ferrari Purosangue on a forest road beneath towering canopies.">
+      </video>
     </div>
     <div class="chapter__scrim" aria-hidden="true"></div>
 
