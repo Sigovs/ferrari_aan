@@ -1,0 +1,489 @@
+/* ═══════════════════════════════════════════════════════════════════════
+   Ferrari 296 GT Modificata — dealer page
+
+   Brief, as set: full-screen frames, never cropped and never inset in a
+   box; text the width of the screen, centred where it wants to be;
+   seamless joins; Ferrari's colours only. Type sizes and spacing are
+   taken from cauleyferrari.com — the page has to sit inside their site —
+   and the page's idea comes from ferrari.com's own 296 GT Modificata.
+
+   Everything below is measured, not chosen. Sources in the comments.
+   ═══════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── colour: Ferrari's, and nothing else ─────────────────────────────
+     #000 and #181818 are both grounds on ferrari.com; #DA291C is the red
+     their button carries and the red cauleyferrari.com sets model names
+     in; #8F8F8F is that site's secondary grey. */
+  --ground:   #000000;
+  --ground-2: #181818;
+  --ink:      #FFFFFF;
+  --ink-2:    #F7F7F7;
+  --grey:     #8F8F8F;
+  --red:      #DA291C;   /* fills: ferrari.com's button, white label 4.87:1 */
+  /* red TYPE takes the Brand Book value (p104, Pantone 485): at the 12px
+     the marque's chapter marker is set in, #DA291C measures 4.31:1 on
+     black and #ED1C24 measures 4.79:1. Same red, two roles, each measured
+     into the one it serves. */
+  --red-type: #ED1C24;
+  --rosso-corsa: #ED1C24;
+  --rule:     rgb(255 255 255 / .16);
+
+  /* ── type: measured on cauleyferrari.com ─────────────────────────────
+       h2            40 / 44      500   none
+       h3            28 / 33.6    500   none
+       lead          16 / 22.4    500   uppercase  .08px
+       body          13 / 19.5    400   none       .195px
+       micro         11 / 16.5    400   uppercase  .165px   #8F8F8F
+       action        12 / 15      400   uppercase  .6px
+     The body sits at 13px, which is under this system's own 14px floor for
+     functional text; it is kept because matching the dealer's own scale is
+     the instruction, and the deviation is recorded rather than hidden. */
+  --t-h1:     clamp(1.75rem, 2.8vw, 2.5rem);    /* 40px at 1440 */
+  --t-h2:     clamp(1.5rem, 2.4vw, 2.5rem);
+  --t-h3:     clamp(1.25rem, 1.8vw, 1.75rem);   /* 28px */
+  --t-lead:   1rem;                             /* 16px */
+  --t-body:   .8125rem;                         /* 13px */
+  --t-micro:  .6875rem;                         /* 11px */
+  --t-action: .75rem;                           /* 12px */
+
+  /* ── rhythm: their section padding is 128 top / 192 bottom ──────────── */
+  --pad-top:    clamp(3.5rem, 8.9vw, 8rem);     /* 128 */
+  --pad-bottom: clamp(5rem, 13.3vw, 12rem);     /* 192 */
+  --measure:    1408px;                         /* their content container */
+  --gutter:     clamp(20px, 4vw, 64px);
+
+  --s-2: 8px;  --s-3: 12px; --s-4: 16px; --s-5: 20px; --s-6: 24px;
+  --s-7: 32px; --s-8: 40px; --s-9: 56px; --s-10: 80px;
+
+  --dur:  .2s;
+  --ease: cubic-bezier(.22, .61, .36, 1);
+  --dur-arrive: .9s;
+  --ease-arrive: cubic-bezier(.22, 1, .36, 1);
+}
+
+body { background: var(--ground); color: var(--ink); font-family: var(--font); font-synthesis: none; -webkit-font-smoothing: antialiased; }
+.gtm { overflow-x: clip; }
+
+/* ═══ the frame ═════════════════════════════════════════════════════════
+   Full width, its own 16:9 height, never cropped and never boxed. The
+   join to the page is seamless by measurement, not by luck: the brightest
+   16px edge strip across all nine frames is luminance 0.022 against a
+   ground of 0.000, so the picture ends and the black continues without a
+   visible seam. */
+.frame {
+  display: block;
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+}
+.frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;      /* only ever acts on the 8192-wide engine frame */
+  /* The joins: a long fade rather than a lip. The frame goes from nothing
+     to itself over its top 12% and back to nothing over its bottom 12%, so
+     there is no line anywhere for the eye to find — the picture simply
+     emerges from the page's black and returns to it. The sides run to the
+     window untouched. */
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+}
+.frame--pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;                  /* the two cabin frames meet with no seam */
+}
+
+/* ═══ the text block ════════════════════════════════════════════════════
+   The width of the screen, centred, on the page's own black. Type never
+   sits on a photograph — which is why no scrim exists anywhere in this
+   file and the frames keep all of their light. */
+.block {
+  padding-block: var(--pad-top) var(--pad-bottom);
+  padding-inline: var(--gutter);
+}
+.block--tight { padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 7vw, 6rem); }
+.block__in {
+  width: min(100%, var(--measure));
+  margin-inline: auto;
+  text-align: center;
+}
+.block__in--wide { max-width: none; }
+.copy { max-width: 74ch; margin-inline: auto; }
+
+h1, .h1 { margin: 0; font-size: var(--t-h1); font-weight: 500; line-height: 1.1; letter-spacing: normal; }
+h2, .h2 { margin: 0; font-size: var(--t-h2); font-weight: 500; line-height: 1.1; }
+h3, .h3 { margin: 0; font-size: var(--t-h3); font-weight: 500; line-height: 1.2; }
+.lead {
+  margin: 0; font-size: var(--t-lead); font-weight: 500; line-height: 1.4;
+  letter-spacing: .08px; text-transform: uppercase;
+}
+.body {
+  margin: 0; font-size: var(--t-body); font-weight: 400; line-height: 1.5;
+  letter-spacing: .195px; color: var(--ink-2);
+}
+.body + .body { margin-block-start: 1.5em; }
+.micro {
+  font-size: var(--t-micro); font-weight: 400; line-height: 1.5;
+  letter-spacing: .165px; text-transform: uppercase; color: var(--grey);
+}
+.action {
+  font-size: var(--t-action); font-weight: 400; line-height: 1.25;
+  letter-spacing: .6px; text-transform: uppercase;
+}
+
+/* the marque's chapter marker, as the Purosangue page carries it */
+.marker { justify-content: center; margin-inline-start: 0; color: var(--red-type); }
+
+/* ═══ records ═══════════════════════════════════════════════════════════ */
+.facts {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: var(--s-6) clamp(2rem, 6vw, 5rem);
+  margin-block-start: var(--s-9);
+  padding-block-start: var(--s-7);
+  border-block-start: 1px solid var(--rule);
+}
+.facts div { min-width: 8rem; }
+.facts dt, .facts .k { margin: 0 0 var(--s-2); }
+.facts dd, .facts .v { margin: 0; font-size: var(--t-h3); font-weight: 500; line-height: 1.2; }
+
+/* ═══ the specification ═════════════════════════════════════════════════ */
+.spec { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-10) clamp(3rem, 7vw, 7rem); text-align: start; }
+.spec__group + .spec__group { margin-block-start: var(--s-9); }
+.spec__label { display: block; padding-block-end: var(--s-3); border-block-end: 1px solid var(--rule); }
+.spec__rows { margin: 0; }
+.spec__row {
+  display: grid; grid-template-columns: minmax(9rem, 1fr) auto; gap: var(--s-5);
+  align-items: baseline; padding-block: var(--s-3);
+  border-block-end: 1px solid rgb(255 255 255 / .08);
+}
+.spec__rows > .spec__row:last-child { border-block-end: 0; }
+.spec__row dt { margin: 0; }
+.spec__row dd { margin: 0; font-size: var(--t-body); font-weight: 500; text-align: end; color: var(--ink); }
+
+/* ═══ controls ══════════════════════════════════════════════════════════
+   ferrari.com's own: #DA291C, white label, 16px regular, square, 57px. */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 57px; padding-inline: 21px;
+  background: var(--red); color: #FFF;
+  font-size: 1rem; font-weight: 400; text-decoration: none; white-space: nowrap;
+  transition: background-color var(--dur) var(--ease);
+}
+.btn:hover { background: #C0241A; }
+.btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.link {
+  display: inline-block; padding-block-end: var(--s-2);
+  border-block-end: 1px solid var(--red);
+  color: var(--ink); text-decoration: none;
+  transition: color var(--dur) var(--ease);
+}
+.link:hover { color: var(--red); }
+.link:focus-visible { outline: 2px solid var(--ink); outline-offset: 4px; }
+
+/* ═══ motion ════════════════════════════════════════════════════════════
+   Light, and on scroll: a frame opens from its own centre line while the
+   picture settles the last few per cent of a slow zoom; text slides up a
+   short distance and fades in, in one beat, never while it is being read.
+
+   Everything defaults to its finished state, so with the script blocked
+   or prefers-reduced-motion set, the page is simply the composition.
+   There is no library: this is two CSS transitions and an observer. */
+@media (prefers-reduced-motion: no-preference) {
+  .js .reveal .frame__img,
+  .js .reveal.frame > img {
+    clip-path: inset(6% 0 6% 0);
+    transform: scale(1.04);
+    transition:
+      clip-path var(--dur-arrive) var(--ease-arrive),
+      transform calc(var(--dur-arrive) * 1.4) var(--ease-arrive);
+  }
+  .js .reveal.is-in .frame__img,
+  .js .reveal.is-in.frame > img {
+    clip-path: inset(0 0 0 0);
+    transform: scale(1);
+  }
+
+  .js .slide {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .6s var(--ease-arrive), transform .7s var(--ease-arrive);
+  }
+  .js .slide.is-in { opacity: 1; transform: none; }
+  /* a block's parts arrive in order, a beat apart, and the beat is short */
+  .js .slide:nth-child(2) { transition-delay: .08s; }
+  .js .slide:nth-child(3) { transition-delay: .16s; }
+  .js .slide:nth-child(4) { transition-delay: .24s; }
+
+  /* The first screen, on load and once only: the picture settles out of a
+     slow 6% zoom while it fades up, and the words follow from under it a
+     beat apart — the same grammar the scroll uses, so the page opens the
+     way it continues. The hero is marked as soon as its picture has
+     decoded, never later than 1.2s, so the screen is never held empty. */
+  .js .hero__frame img {
+    opacity: 0; transform: scale(1.06);
+    transition: opacity .9s var(--ease-arrive), transform 1.8s var(--ease-arrive);
+  }
+  .js .hero.is-in .hero__frame img { opacity: 1; transform: scale(1); }
+
+  .js .hero__type > * {
+    opacity: 0; transform: translateY(16px);
+    transition: opacity .7s var(--ease-arrive), transform .8s var(--ease-arrive);
+  }
+  .js .hero.is-in .hero__type > * { opacity: 1; transform: none; }
+  .js .hero.is-in .hero__type > :nth-child(1) { transition-delay: .34s; }
+  .js .hero.is-in .hero__type > :nth-child(2) { transition-delay: .46s; }
+  .js .hero.is-in .hero__type > :nth-child(3) { transition-delay: .58s; }
+  .js .hero.is-in .hero__type > :nth-child(4) { transition-delay: .70s; }
+}
+
+/* ═══ the phone ═════════════════════════════════════════════════════════
+   The frames keep their full 16:9 — they are not cropped here either, so
+   the car is whole at every width — and the type steps down to the
+   dealer's own mobile scale. */
+@media (max-width: 60rem) {
+  :root {
+    --t-h1: clamp(1.5rem, 7vw, 2rem);
+    --t-h2: clamp(1.375rem, 6vw, 1.75rem);
+    --t-h3: 1.25rem;
+  }
+  .frame--pair { grid-template-columns: 1fr; }
+  .facts { gap: var(--s-6) var(--s-8); }
+  .spec { grid-template-columns: 1fr; gap: var(--s-9); }
+}
+
+/* ═══ the first screen ══════════════════════════════════════════════════
+   Set against `hero screen.jpg`, the Figma frame (2026-09-22): the picture
+   runs the full width, the header sits over the top of the hall, and the
+   type stands centred on the floor under the car.
+
+   The picture is the brief's own, F296GTM_hero_shots_3_4_16_9_v11 — HERO1
+   is withdrawn (23 Sep 2026). It is 16:9 (picH = 0.5625 × W), measured:
+
+       car          x 0.135–0.870,  y 0.280–0.770
+       spotlights   y 0.07–0.21
+
+   so the car's top is at 0.1575 × W and its lowest point at 0.4331 × W.
+
+   The rise pulls the hall up under the header, up to 5.6% of W, but never
+   so far that the roof goes under the 131px band — 40px of air is kept:
+       rise ≤ 0.1575 × W − 131 − 40 = 0.1575 × W − 171px
+
+   The picture always runs the full width — no side fades, no black bars
+   (Alex, 23 Sep 2026). The type block — 195px, the last 57 of it the
+   button — stands 40px under the car with at least 24px of floor beneath
+   it, so the first screen needs
+       0.4331 × W − rise + 259px
+   and where the window is shorter than that, the hero grows to it rather
+   than cutting the car or laying the words over it. It is the floor under
+   the words that gives way first, to 24px.
+
+   The only fade is the bottom one, from 80% down — the car ends at 77%, so it is the
+   floor alone that dims. That fade is also what holds the type: the lit
+   pool under the car reaches L 0.20 behind the facts line, 3.4:1 for its
+   78% white. Faded, and measured on the render with the type hidden —
+   the brightest pixel behind each line, 23 Sep 2026 — the minimum is
+   4.96:1 (title, large text) and 6.52:1 (facts line), 1280 to 2560. */
+.hero {
+  /* the width of the picture, and the one number the rest is derived from */
+  --pic-w: 100vw;
+  --rise: max(0px, min(calc(var(--pic-w) * 0.056), calc(var(--pic-w) * 0.1575 - 10.7rem)));
+  position: relative;
+  /* the screen, or — on a window too short for car, words and floor — as
+     much as they need, so nothing is cut and nothing overlaps */
+  height: max(100vh, calc(var(--pic-w) * 0.4331 - var(--rise) + 16.2rem));
+  /* base.css carries its own .hero — 100svh, padded for the header, with
+     its children aligned to the end — and every part of that had to go */
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  display: block;
+  overflow: hidden;
+}
+.hero__frame { position: absolute; inset: 0; margin: 0; overflow: hidden; }
+.hero__frame img {
+  display: block;
+  width: var(--pic-w);
+  max-width: none;
+  height: auto;
+  margin-inline: auto;
+  margin-block-start: calc(var(--rise) * -1);
+  -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 80%, transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 0, #000 80%, transparent 100%);
+}
+
+/* The words: the Figma frame's own sizes, taken off the cap heights at
+   1920 (cap height is 0.74em in this face, calibrated on our own render) —
+   title 30px, subhead 18px, facts 15px, the route 16px, all upper case,
+   centred, and the block ending 210px above the fold. */
+.hero__type {
+  position: absolute; inset-inline: 0; inset-block-end: 0; z-index: 1;
+  width: 100%;
+  max-width: none;
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  /* 160px of floor under the words — the frame's 199px, dropped 39px on
+     Alex's call — and it is this that gives way first, never the car */
+  padding-block-end: clamp(1.5rem, calc(100vh - (var(--pic-w) * 0.4331 - var(--rise)) - 14.7rem), 10rem);
+  text-align: center;
+}
+.hero__type .h1 {
+  font-size: clamp(1.375rem, 2vw, 1.875rem);
+  text-transform: uppercase;
+  letter-spacing: .005em;
+  margin-block-end: 16px;
+}
+.hero__type .lead {
+  font-size: clamp(.9375rem, 1.2vw, 1.125rem);
+  margin-block-end: 17px;
+  max-width: none;
+}
+/* cauleyferrari.com's secondary grey (#8F8F8F) is right on black but
+   under AA on the hero's lit floor; the frame's own grey (#707070) is
+   worse. It is lifted to white at 78% — 6.52:1 at its worst patch — the
+   same weight and the same role. */
+.hero__type .micro {
+  font-size: clamp(.75rem, .9vw, .9375rem);
+  margin-block-end: 24px;
+  color: rgb(255 255 255 / .78);
+}
+.hero__type p { margin-block-start: 0; }
+/* The route is the page's primary control, not a line of text: ferrari.com's
+   own button — #DA291C, white label at 16px regular, square, 57px — the same
+   one that closes the page. Sentence case is that component's, measured; the
+   frame set this line as plain upper-case type. */
+.hero__type .btn { margin-block-start: 0; }
+
+/* the name is in the picture; the heading still exists for anything that
+   cannot see it */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+
+@media (max-width: 60rem) {
+  /* On a phone the car is 73.5% of the frame, so the picture needs only a
+     little help: it is set at 120% and pulled back by half the overflow,
+     which puts the car's centre (x 0.50) on the screen's and leaves it
+     from 6vw to 94vw — whole, with air on both sides. */
+  .hero { height: auto; min-height: 0; margin-block-start: var(--head-h-m, 120px); }
+  /* the picture is then 67.5vw tall and the car's lowest point lands at
+     52vw, so the frame is cut at 60vw — 8vw of floor under the car — and
+     the fade is moved up to land on that cut */
+  .hero__frame { position: static; height: 60vw; overflow: hidden; }
+  /* base.css caps every image at max-width:100% — that has to go here,
+     or 120% silently computes back to the frame's own width */
+  .hero__frame img {
+    width: 120%; max-width: none; margin-inline: -10%; margin-block-start: 0; height: auto;
+    -webkit-mask-image: linear-gradient(to bottom, #000 0, #000 78%, transparent 89%);
+            mask-image: linear-gradient(to bottom, #000 0, #000 78%, transparent 89%);
+  }
+  .hero__type { position: static; padding-block: var(--s-6) var(--s-9); }
+}
+
+/* ═══ the dealer's header, exactly as their own site behaves ════════════
+   Measured on cauleyferrari.com: the 40px contact bar scrolls away with
+   the page and the 91px navigation band — black at 60% — stays at the top
+   of the window. `.header` is absolute, so pinning the band costs no
+   reflow. Below 64rem there is no contact bar, so the whole header pins. */
+body.nav-pinned .header__navigation-section {
+  position: fixed; inset-inline: 0; inset-block-start: 0; z-index: 10;
+  /* the band keeps their 60% black; what passes under it is blurred, or
+     the hero's own words read straight through the nav on the way past */
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+@media (max-width: 64rem) {
+  body.nav-pinned .header { position: fixed; }
+  body.nav-pinned .header__navigation-section { position: relative; }
+}
+
+/* ═══ the stage: one frame, the words in a drawer across it ═════════════
+   ferrari.com's own device, from LIMITLESS POSSIBILITIES: the picture
+   holds the screen and the text rides in a panel over it that the visitor
+   can put away. The panel stands on the second cabin frame, blurred, so
+   both supplied pictures are used and the panel has the room's depth
+   rather than a flat tint.
+
+   Open by default — with no script the text is simply there, and the
+   button is what takes it away. */
+.stage {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+}
+.stage__media { position: absolute; inset: 0; z-index: 0; }
+.stage__media img {
+  width: 100%; height: 100%; object-fit: cover; object-position: 62% 50%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%);
+          mask-image: linear-gradient(to bottom, transparent 0, #000 10%, #000 90%, transparent 100%);
+}
+
+.drawer {
+  position: absolute; inset-block: 0; inset-inline-start: 0; z-index: 1;
+  width: min(49%, 720px);
+  display: grid; align-content: center;
+  transition: transform .55s var(--ease-arrive);
+}
+.drawer__bg {
+  position: absolute; inset: -8%;
+  background-image: url("../img/interni_03-1200.webp");   /* paths in a stylesheet resolve from the stylesheet */
+  background-size: cover; background-position: 50% 45%;
+  /* .34 left the panel at #11100F, where the 12px marker measured 3.91:1.
+     At .22 the ground drops to L 0.0018 and the marker reads 4.55:1 — and
+     the panel matches the reference, which is darker than a tint. */
+  filter: blur(34px) brightness(.22) saturate(.9);
+  /* the blur runs 8% past the panel and would soften its edge; clipped
+     back to the panel's own box — 8 / 116 — the edge is a clean line */
+  clip-path: inset(6.897%);
+  z-index: -1;
+}
+.drawer__in { padding-inline: clamp(24px, 5vw, 88px); padding-block: var(--s-10); }
+.drawer__in .marker { justify-content: flex-start; margin-block-end: var(--s-7); }
+.drawer__in .h2 { max-width: 14ch; }
+.drawer__copy { margin-block-start: var(--s-7); max-width: 46ch; }
+
+.drawer__toggle {
+  position: absolute; inset-block-start: 50%; inset-inline-end: -22px;
+  width: 44px; height: 44px; margin-block-start: -22px;
+  display: grid; place-items: center;
+  border: 0; border-radius: 50%;
+  background: rgb(255 255 255 / .16);
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease), transform .55s var(--ease-arrive);
+}
+.drawer__toggle:hover { background: rgb(255 255 255 / .26); }
+.drawer__toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+/* the icon is a cross when the panel is out, a plus when it is away */
+.drawer__icon, .drawer__icon::before {
+  content: ""; display: block; width: 14px; height: 1px; background: var(--ink);
+  transition: transform .35s var(--ease-arrive);
+}
+.drawer__icon { transform: rotate(45deg); }
+.drawer__icon::before { transform: rotate(90deg); }
+
+.stage.is-closed .drawer { transform: translateX(-100%); }
+.stage.is-closed .drawer__toggle { transform: translateX(calc(100% + var(--gutter))); }
+.stage.is-closed .drawer__icon { transform: rotate(0deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer, .drawer__toggle, .drawer__icon { transition: none; }
+}
+
+/* the phone gets no overlay: the picture plays, the words stand under it */
+@media (max-width: 60rem) {
+  .stage { min-height: 0; }
+  .stage__media { position: relative; inset: auto; }
+  .stage__media img { height: auto; aspect-ratio: 16 / 9; }
+  .drawer { position: relative; inset: auto; width: 100%; transform: none !important; }
+  .drawer__bg { display: none; }
+  .drawer__in { padding-block: var(--pad-top) var(--pad-bottom); text-align: center; }
+  .drawer__in .marker { justify-content: center; }
+  .drawer__in .h2, .drawer__copy { max-width: none; margin-inline: auto; }
+  .drawer__toggle { display: none; }
+}

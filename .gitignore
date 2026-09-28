@@ -7,3 +7,13 @@ node_modules/
 
 # 127 MB archive that duplicates the .mov masters sitting beside it in assets/raw
 assets/raw/Additional Videos-selected.zip
+
+# 296 GT Modificata: FNA masters (8000px PNGs, several over 50 MB) and the
+# 423 MB archive of them — over GitHub's hard 100 MB file limit. The web-sized
+# webp derivatives the pages actually use are kept.
+# The folder really is named "296 GT Modificata " with a trailing space, and the
+# earlier rule spelled it "Ferrari 296 GT Modificata/" — so it matched nothing
+# and the archive went into a commit the remote refused.
+296 GT Modificata /Media/
+296 GT Modificata /Media.zip
+**/Media.zip
